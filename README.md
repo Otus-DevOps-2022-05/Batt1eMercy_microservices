@@ -21,3 +21,22 @@ docker-machine create \
   --generic-ssh-key ~/.ssh/ubuntu \
   docker-host
 ```
+## Docker образы. Микросервисы
+
+``` docker volume create reddit_db ```
+```
+docker run -d --network=reddit --network-alias=post_db \
+  --network-alias=comment_db -v reddit_db:/data/db mongo:latest
+```
+```
+docker run -d --network=reddit \
+  --network-alias=post batt1emercy/post:1.0
+```
+```
+docker run -d --network=reddit \
+  --network-alias=comment batt1emercy/comment:1.0
+```
+```
+docker run -d --network=reddit \
+  -p 9292:9292 batt1emercy/ui:2.0
+```
