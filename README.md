@@ -40,3 +40,6 @@ docker run -d --network=reddit \
 docker run -d --network=reddit \
   -p 9292:9292 batt1emercy/ui:2.0
 ```
+## Сетевое взаимодействие Docker контейнеров. Docker Compose. Тестирование образов  
+  
+Задать имена для сущностей docker-compose можно посредством инструкции ```name```  
