@@ -48,3 +48,7 @@ docker run -d --network=reddit \
 
 * Создали композник с gitlab  
 * Создали тестовый gitlab-ci
+  
+## Введение в мониторинг. Модели и принципы работы систем мониторинга
+  
+dockerhub: `https://hub.docker.com/`  
