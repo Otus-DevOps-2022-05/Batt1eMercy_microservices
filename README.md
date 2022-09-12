@@ -52,3 +52,30 @@ docker run -d --network=reddit \
 ## Введение в мониторинг. Модели и принципы работы систем мониторинга
   
 dockerhub: `https://hub.docker.com/`  
+
+## Применение системы логирования в инфраструктуре на основе Docker  
+VM:  
+```
+yc compute instance create \
+  --name logging \
+  --memory 4 \
+  --zone ru-central1-a \
+  --network-interface subnet-name=default-ru-central1-a,nat-ip-version=ipv4 \
+  --create-boot-disk image-folder-id=standard-images,image-family=ubuntu-1804-lts,size=15 \
+  --ssh-key ~/.ssh/ubuntu.pub
+```
+  
+Docker machine:  
+```
+docker-machine create \
+  --driver generic \
+  --generic-ip-address=<pub ip> \
+  --generic-ssh-user yc-user \
+  --generic-ssh-key ~/.ssh/ubuntu \
+  logging
+```
+```
+eval $(docker-machine env logging)
+docker-machine rm logging
+yc compute instance delete logging
+```
