@@ -79,3 +79,37 @@ eval $(docker-machine env logging)
 docker-machine rm logging
 yc compute instance delete logging
 ```
+
+## Введение в Kubernetes #1 
+install docker:  
+```
+sudo apt update
+sudo apt install -y docker.io
+sudo systemctl enable docker.service --now
+```
+  
+install k8s:  
+```
+sudo apt install -y apt-transport-https curl
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
+sudo apt-add-repository "deb http://apt.kubernetes.io/ kubernetes-xenial main"
+sudo apt install -y kubelet kubeadm kubectl
+```
+  
+init k8s:  
+```
+sudo kubeadm init --apiserver-cert-extra-sans=51.250.78.199 --apiserver-advertise-address=0.0.0.0 --control-plane-endpoint=51.250.78.199 --pod-network-cidr=10.244.0.0/16  
+```
+  
+kube config on master:  
+```
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
+  
+plugin(calico.yaml - CALICO_IPV4POOL_CIDR: 10.244.0.0/16):
+```
+curl https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/calico.yaml -O
+kubectl apply -f calico.yaml
+```
