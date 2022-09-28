@@ -113,3 +113,15 @@ plugin(calico.yaml - CALICO_IPV4POOL_CIDR: 10.244.0.0/16):
 curl https://raw.githubusercontent.com/projectcalico/calico/v3.24.1/manifests/calico.yaml -O
 kubectl apply -f calico.yaml
 ```
+  
+## Введение в Kubernetes #2
+get k8s config:  
+```
+yc managed-kubernetes cluster get-credentials test-k8s-cluster --external
+```
+  
+change namespace:  
+```
+kubectl config set-context --current --namespace=dev
+```
+
