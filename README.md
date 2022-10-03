@@ -124,4 +124,9 @@ change namespace:
 ```
 kubectl config set-context --current --namespace=dev
 ```
-
+  
+## Введение в Kubernetes #3  
+install ingress:  
+```
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/cloud/deploy.yaml
+```
