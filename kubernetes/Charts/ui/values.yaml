@@ -6,6 +6,9 @@ image:
   repository: batt1emercy/ui
   tag: latest
 
+ingress:
+  class: nginx
+  
 postHost:
 postPort:
 commentHost:
